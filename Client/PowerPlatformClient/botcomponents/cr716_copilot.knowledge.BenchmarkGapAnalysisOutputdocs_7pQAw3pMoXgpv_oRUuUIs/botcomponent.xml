@@ -1,0 +1,11 @@
+<botcomponent schemaname="cr716_copilot.knowledge.BenchmarkGapAnalysisOutputdocs_7pQAw3pMoXgpv_oRUuUIs">
+  <componenttype>16</componenttype>
+  <description>This knowledge source provides information found in BenchmarkGapAnalysisOutputdocs SharePoint.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>BenchmarkGapAnalysisOutputdocs</name>
+  <parentbotid>
+    <schemaname>cr716_copilot</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

@@ -1,0 +1,191 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_77d75"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_item_is_created": {
+          "recurrence": {
+            "interval": 1,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "d4a4ce6b-f78d-4b32-9996-3444d55cbfdd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://mngenvmcap993385.sharepoint.com/sites/SustainabilityGenAISA",
+              "table": "5573e952-1405-4c2a-aa02-2f619b7ef49a"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "GetAttachment": {
+          "runAfter": {
+            "Set_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cac4a734-f4dc-442d-a474-84ace9d0d6c0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetItemAttachments",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://mngenvmcap993385.sharepoint.com/sites/SustainabilityGenAISA",
+              "table": "5573e952-1405-4c2a-aa02-2f619b7ef49a",
+              "itemId": "@triggerOutputs()?['body/ID']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "GetFile": {
+          "runAfter": {
+            "GetAttachment": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4df38b81-18c2-408c-9e7e-e6c3dd37f13a"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline_1",
+              "operationId": "GetFileContentByPath",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://mngenvmcap993385.sharepoint.com/sites/SustainabilityGenAISA",
+              "path": "/Lists/SustainabilityCSRDReports/Attachments/@{triggerBody()?['Id']}/@{body('GetAttachment')[0]?['DisplayName']}",
+              "inferContentType": true
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "HTTP": {
+          "runAfter": {
+            "GetFile": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3c3f5187-0d1b-4e35-b51c-6c72245a387d"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "POST",
+            "uri": "@{variables('APIURL')}/DocumentManager/RegisterDocument",
+            "headers": {
+              "Content-Type": "multipart/form-data"
+            },
+            "body": {
+              "$content-type": "multipart/form-data",
+              "$multipart": [
+                {
+                  "headers": {
+                    "Content-Disposition": "form-data; name=\"Tags\""
+                  },
+                  "body": "@variables('strText')"
+                },
+                {
+                  "headers": {
+                    "Content-Disposition": "form-data; name=\"FileBinary\"; filename=\"@{body('GetAttachment')[0]?['DisplayName']}\""
+                  },
+                  "body": "@base64ToBinary(body('GetFile')?['$content'])"
+                }
+              ]
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "backend_API_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "89a2ed5e-d4ad-40d5-9d25-5894d6739c43"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "strText",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Set_variable": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9ec26281-afb8-4c9f-a71c-c07d9eb46c93"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "strText",
+            "value": "[     {       \"key\": \"Classification\",       \"value\": \"@{triggerOutputs()?['body/Classification/Value']}\"     },         {       \"key\": \"Title\",       \"value\": \"@{triggerOutputs()?['body/Title']}\"     },     {       \"key\": \"Type\",       \"value\": \"@{triggerOutputs()?['body/DocumentType/Value']}\"     },     {       \"key\": \"Year\",       \"value\": \"@{triggerOutputs()?['body/Year']}\"     }   ]"
+          }
+        },
+        "backend_API_URL": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d99fb722-ad84-46fa-9b60-66dd769a3dfa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "APIURL",
+                "type": "string",
+                "value": "https://esgdocanalysis-946.canadacentral.cloudapp.azure.com"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

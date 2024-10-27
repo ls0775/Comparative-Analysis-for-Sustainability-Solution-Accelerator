@@ -1,0 +1,294 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.24093.156" OrganizationSchemaType="Full" CRMServerServiceabilityVersion="9.2.24093.00156">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{a56077c7-3353-ef11-bfe3-000d3a1c47fc}" Name="PA-GetAllBenchmarkResults">
+      <JsonFileName>/Workflows/PA-GetAllBenchmarkResults-A56077C7-3353-EF11-BFE3-000D3A1C47FC.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.3</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="PA-GetAllBenchmarkResults" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{a76077c7-3353-ef11-bfe3-000d3a1c47fc}" Name="PA-GetAllGapAnalysisResults">
+      <JsonFileName>/Workflows/PA-GetAllGapAnalysisResults-A76077C7-3353-EF11-BFE3-000D3A1C47FC.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.3</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="PA-GetAllGapAnalysisResults" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{3f222768-7e4e-ef11-a317-000d3a3be2c1}" Name="Getalldocumentsfromapi">
+      <JsonFileName>/Workflows/Getalldocumentsfromapi-3F222768-7E4E-EF11-A317-000D3A3BE2C1.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.2</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Getalldocumentsfromapi" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{5b61ed15-df50-ef11-bfe3-000d3a8f69c5}" Name="PA-GapAnalysis">
+      <JsonFileName>/Workflows/PA-GapAnalysis-5B61ED15-DF50-EF11-BFE3-000D3A8F69C5.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.3</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="PA-GapAnalysis" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{a61caa67-7e4e-ef11-a317-00224809d4c2}" Name="File upload from Sharepoint list to API">
+      <JsonFileName>/Workflows/FileuploadfromSharepointlisttoAPI-A61CAA67-7E4E-EF11-A317-00224809D4C2.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.2</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="File upload from Sharepoint list to API" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{06c46414-df50-ef11-bfe2-6045bdd7d769}" Name="PA-Benchmark">
+      <JsonFileName>/Workflows/PA-Benchmark-06C46414-DF50-EF11-BFE2-6045BDD7D769.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.3</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="PA-Benchmark" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{2bc3ff63-9f56-ef11-a317-7c1e5218f44f}" Name="output notification in Teams">
+      <JsonFileName>/Workflows/outputnotificationinTeams-2BC3FF63-9F56-EF11-A317-7C1E5218F44F.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="output notification in Teams" />
+      </LocalizedNames>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <CanvasApps>
+    <CanvasApp>
+      <Name>cr26f_chanelfbaiforcps_807f7</Name>
+      <AppVersion>2024-09-25T17:43:19Z</AppVersion>
+      <Status>Ready</Status>
+      <CreatedByClientVersion>3.24094.6.0</CreatedByClientVersion>
+      <MinClientVersion>3.24094.6.0</MinClientVersion>
+      <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.24094.6","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20240916T205429Z-3.24092.15.0"}</Tags>
+      <IsCdsUpgraded>0</IsCdsUpgraded>
+      <GalleryItemId xsi:nil="true"></GalleryItemId>
+      <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+      <DisplayName>Gen AI SA App</DisplayName>
+      <Description xsi:nil="true"></Description>
+      <CommitMessage xsi:nil="true"></CommitMessage>
+      <Publisher></Publisher>
+      <AuthorizationReferences>[]</AuthorizationReferences>
+      <ConnectionReferences>{"f022f1e0-3d74-4ed2-962f-de877d5c280b":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1697/1.0.1697.3786/sharepointonline/icon.png","dataSources":["Benchmarks_1","Documents_1","Sustainability Documents","Gap Analysis_1","BenchmarkGapAnalysisOutputdocs","SustainabilityCSRDReports"],"dependencies":[],"dependents":["7edf17e8-4823-4776-a577-dfd33505e7ec"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"https://mngenvmcap909640.sharepoint.com/sites/ChanelFragranceBeauty":{"dataSources":{"Benchmarks_1":{"tableName":"d97aade3-a542-4fa1-8935-34dacf2d0bcb"},"Documents_1":{"tableName":"b71ccf54-b630-4c1b-9781-2ca5b0b155aa"},"Sustainability Documents":{"tableName":"a0462d6a-1e77-4d4c-9a58-2031bd67b74a"},"Gap Analysis_1":{"tableName":"1485538c-45ec-4ec4-92c0-becbdfe26d15"}}},"https://mngenvmcap909640.sharepoint.com/sites/SustainabilityGenAISA":{"dataSources":{"BenchmarkGapAnalysisOutputdocs":{"tableName":"6212236d-7c71-4bc2-b14d-a32737716669"},"SustainabilityCSRDReports":{"tableName":"3650b307-1d0f-490c-9a16-f5097e2f3e56"}}}},"apiTier":"Standard","actions":["providers/PowerPlatform.Governance/Operations/Read"]},"dcb5c7fd-2238-415b-8045-eaf2d8b9c707":{"id":"/providers/microsoft.powerapps/apis/shared_office365users","displayName":"Office 365 Users","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1702/1.0.1702.3810/office365users/icon.png","dataSources":["Office365Users"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["UserProfile_V2"]},"4cba3512-7f09-46da-b993-4d893040558c":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png","dataSources":["PA-GetAllGapAnalysisResults"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"ac10e068-828c-47d1-93b0-f00f005020a7"},"workflowEntityId":{"value":"a76077c7-3353-ef11-bfe3-000d3a1c47fc"},"workflowDisplayName":{"value":"PA-GetAllGapAnalysisResults"}},"parameterHintsV2":{"workflowName":{"value":"ac10e068-828c-47d1-93b0-f00f005020a7"},"workflowEntityId":{"value":"a76077c7-3353-ef11-bfe3-000d3a1c47fc"},"workflowDisplayName":{"value":"PA-GetAllGapAnalysisResults"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"c8b03525-6c8f-421e-8060-45aa6e2cc391":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png","dataSources":["Getalldocumentsfromapi"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"ba0a6b25-58bd-4e6d-9035-2d1465b27cc4"},"workflowEntityId":{"value":"3f222768-7e4e-ef11-a317-000d3a3be2c1"},"workflowDisplayName":{"value":"Getalldocumentsfromapi"}},"parameterHintsV2":{"workflowName":{"value":"ba0a6b25-58bd-4e6d-9035-2d1465b27cc4"},"workflowEntityId":{"value":"3f222768-7e4e-ef11-a317-000d3a3be2c1"},"workflowDisplayName":{"value":"Getalldocumentsfromapi"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"7edf17e8-4823-4776-a577-dfd33505e7ec":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png","dataSources":["PA-Benchmark"],"dependencies":["f022f1e0-3d74-4ed2-962f-de877d5c280b"],"dependents":[],"parameterHints":{"workflowName":{"value":"43b13be3-9905-482b-ac0a-1a1f911b94eb"},"workflowEntityId":{"value":"06c46414-df50-ef11-bfe2-6045bdd7d769"},"workflowDisplayName":{"value":"PA-Benchmark"},"f022f1e0-3d74-4ed2-962f-de877d5c280b":{"value":"shared_sharepointonline_1"}},"parameterHintsV2":{"workflowName":{"value":"43b13be3-9905-482b-ac0a-1a1f911b94eb"},"workflowEntityId":{"value":"06c46414-df50-ef11-bfe2-6045bdd7d769"},"workflowDisplayName":{"value":"PA-Benchmark"},"shared_sharepointonline_1":{"value":"f022f1e0-3d74-4ed2-962f-de877d5c280b"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"1988f166-a20d-49f2-9c91-d5a8bd67eda5":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png","dataSources":["PA-GetAllBenchmarkResults"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"bfb250fb-0a70-4256-8131-6bd2f0820e3c"},"workflowEntityId":{"value":"a56077c7-3353-ef11-bfe3-000d3a1c47fc"},"workflowDisplayName":{"value":"PA-GetAllBenchmarkResults"}},"parameterHintsV2":{"workflowName":{"value":"bfb250fb-0a70-4256-8131-6bd2f0820e3c"},"workflowEntityId":{"value":"a56077c7-3353-ef11-bfe3-000d3a1c47fc"},"workflowDisplayName":{"value":"PA-GetAllBenchmarkResults"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"9ac59921-8d55-4eca-8713-a2902251ba64":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png","dataSources":["PA-GapAnalysis"],"dependencies":["7197e564-c876-497d-bc58-99be113766b0"],"dependents":[],"parameterHints":{"workflowName":{"value":"e9770eb3-8c21-4b6c-902d-40b538526117"},"workflowEntityId":{"value":"5b61ed15-df50-ef11-bfe3-000d3a8f69c5"},"workflowDisplayName":{"value":"PA-GapAnalysis"},"7197e564-c876-497d-bc58-99be113766b0":{"value":"shared_sharepointonline_1"}},"parameterHintsV2":{"workflowName":{"value":"e9770eb3-8c21-4b6c-902d-40b538526117"},"workflowEntityId":{"value":"5b61ed15-df50-ef11-bfe3-000d3a8f69c5"},"workflowDisplayName":{"value":"PA-GapAnalysis"},"shared_sharepointonline_1":{"value":"7197e564-c876-497d-bc58-99be113766b0"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"7197e564-c876-497d-bc58-99be113766b0":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1697/1.0.1697.3786/sharepointonline/icon.png","dataSources":[],"dependencies":[],"dependents":["9ac59921-8d55-4eca-8713-a2902251ba64"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard"},"215ebdbc-51ea-4ace-94af-ada0ca4c49df":{"id":"/providers/microsoft.powerapps/apis/shared_excelonlinebusiness","displayName":"Excel Online (Business)","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1702/1.0.1702.3814/excelonlinebusiness/icon.png","dataSources":["Table4"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"groups%252F9056061e-8664-4f16-82f8-bb4f90d8ca40,b%2521rsfkHMTlYE2IoBSrlF-bhQFIieWIRldJolvXEBPxeiKnIA9libbqQZGk_H4k3p6l,014GOQYTW5AN6F2IYZ5VBI27L62WRCICUN":{"dataSources":{"Table4":{"tableName":"{51236906-150E-48DC-9AEA-481BF5BE5F42}"}}}},"apiTier":"Standard","actions":["providers/PowerPlatform.Governance/Operations/Read"]}}</ConnectionReferences>
+      <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified","environmentVariableName":""}},"dataSources":{"43b0dc67-68af-47ae-9a9c-9e69d396ba3e":{"entitySetName":"msdyn_aimodels","logicalName":"msdyn_aimodel"},"aaecc619-18c9-476b-9b00-1226535c6d87":{"entitySetName":"organizations","logicalName":"organization"}}}}</DatabaseReferences>
+      <AppComponents>[]</AppComponents>
+      <AppComponentDependencies>[]</AppComponentDependencies>
+      <CanConsumeAppPass>1</CanConsumeAppPass>
+      <CanvasAppType>0</CanvasAppType>
+      <BypassConsent>0</BypassConsent>
+      <AdminControlBypassConsent>0</AdminControlBypassConsent>
+      <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <CdsDependencies>{"cdsdependencies":[{"dependencyid":"a76077c7-3353-ef11-bfe3-000d3a1c47fc","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"3f222768-7e4e-ef11-a317-000d3a3be2c1","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"06c46414-df50-ef11-bfe2-6045bdd7d769","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"a56077c7-3353-ef11-bfe3-000d3a1c47fc","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"5b61ed15-df50-ef11-bfe3-000d3a8f69c5","componenttype":29,"componenttypeplatformname":"Workflow"},{"logicalname":"msdyn_aimodel","componenttype":1},{"logicalname":"organization","componenttype":1}]}</CdsDependencies>
+      <IsCustomizable>1</IsCustomizable>
+      <BackgroundImageUri>/CanvasApps/cr26f_chanelfbaiforcps_807f7_BackgroundImageUri</BackgroundImageUri>
+      <DocumentUri>/CanvasApps/cr26f_chanelfbaiforcps_807f7_DocumentUri.msapp</DocumentUri>
+      <AdditionalUris>
+        <AdditionalUri>/CanvasApps/cr26f_chanelfbaiforcps_807f7_AdditionalUris0_identity.json</AdditionalUri>
+      </AdditionalUris>
+    </CanvasApp>
+  </CanvasApps>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="cr26f_sharedsharepointonline_26a56">
+      <connectionreferencedisplayname>SharePoint </connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="cr716_sharedsendmail_d2c8e">
+      <connectionreferencedisplayname>Mail ClientApp-d2c8e</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sendmail</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="cr716_sharedsharepointonline_df1fc">
+      <connectionreferencedisplayname>SharePoint ClientApp-df1fc</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="cr716_sharedteams_33aa8">
+      <connectionreferencedisplayname>Microsoft Teams ClientApp-33aa8</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_teams</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedoffice365_c446e">
+      <connectionreferencedisplayname>Office 365 Outlook</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_0679b">
+      <connectionreferencedisplayname>SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_53fe8">
+      <connectionreferencedisplayname>SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_630ff">
+      <connectionreferencedisplayname>SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsharepointonline_77d75">
+      <connectionreferencedisplayname>SharePoint</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

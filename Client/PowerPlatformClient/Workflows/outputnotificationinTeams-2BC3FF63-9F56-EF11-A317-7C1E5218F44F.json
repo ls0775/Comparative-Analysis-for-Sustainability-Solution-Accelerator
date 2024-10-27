@@ -1,0 +1,126 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_teams": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr716_sharedteams_33aa8"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_c446e"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr716_sharedsharepointonline_df1fc"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_file_is_created_(properties_only)": {
+          "recurrence": {
+            "interval": 1,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "bc489d4f-1b99-4667-a51d-bb4c74454d56"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetOnNewFileItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://mngenvmcap993385.sharepoint.com/sites/SustainabilityGenAISA",
+              "table": "8e5b6d6a-28db-4c13-93e3-16e647efd951"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Post_message_in_a_chat_or_channel": {
+          "runAfter": {
+            "Send_an_email_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0d2b3603-9e46-4c6e-a7de-3cff18f7e60d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_teams",
+              "operationId": "PostMessageToConversation",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+            },
+            "parameters": {
+              "poster": "Power Virtual Agents",
+              "location": "powerva",
+              "body/bot": "cr716_copilot",
+              "body/recipient": "@{triggerOutputs()?['body/Editor/Email']};",
+              "body/messageBody": "<p>A document analysis record has been created!<br>\nDocument Name: @{triggerOutputs()?['body/{Name}']}<br>\n<br>\n<a href= \"@{triggerOutputs()?['body/{Link}']}\">Link To Item</a>\n<br>\n</p>",
+              "body/attribution": true,
+              "body/activeChat": "Send",
+              "body/installedError": "Fail"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "cf03814c-3de2-4281-bdc9-ba1935606765"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "@triggerOutputs()?['body/Editor/Email']",
+              "emailMessage/Subject": "A document analysis record has been created!",
+              "emailMessage/Body": "A document analysis record has been created!<br><br>\n\nDocument Name:  @{triggerOutputs()?['body/{Name}']} <br><br>\n\n\nDocument URL: @{triggerOutputs()?['body/{Link}']}\n\n\n",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

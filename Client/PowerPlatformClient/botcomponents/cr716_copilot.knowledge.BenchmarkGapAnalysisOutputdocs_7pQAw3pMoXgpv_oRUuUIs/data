@@ -1,0 +1,4 @@
+kind: KnowledgeSourceConfiguration
+source:
+  kind: SharePointSearchSource
+  site: https://mngenvmcap993385.sharepoint.com/sites/SustainabilityGenAISA/BenchmarkGapAnalysisOutputdocs

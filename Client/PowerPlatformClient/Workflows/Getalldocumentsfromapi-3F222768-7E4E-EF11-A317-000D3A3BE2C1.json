@@ -1,0 +1,132 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "69526fb9-b6d6-40e4-a3f2-21773ab61656"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "HTTP": {
+          "runAfter": {
+            "backend_API_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "64334591-e078-4cdf-8b93-ab4faf410e9a"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "GET",
+            "uri": "@{variables('APIURL')}/DocumentManager/GetAllDocuments"
+          }
+        },
+        "Response_2": {
+          "runAfter": {
+            "HTTP": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "eafe767c-7d48-473a-8cd5-50e452cfe0b9"
+          },
+          "type": "Response",
+          "kind": "Http",
+          "inputs": {
+            "statusCode": 200,
+            "body": "@body('HTTP')",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "documentId": {
+                    "type": "string"
+                  },
+                  "fileDisplayName": {
+                    "type": "string"
+                  },
+                  "fileLocation": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "year": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "classification": {
+                    "type": "string"
+                  },
+                  "uploadedTime": {
+                    "type": "string"
+                  },
+                  "latestProcessedTime": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "documentId",
+                  "fileDisplayName",
+                  "fileLocation",
+                  "title",
+                  "year",
+                  "type",
+                  "classification",
+                  "uploadedTime",
+                  "latestProcessedTime",
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "backend_API_URL": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d99fb722-ad84-46fa-9b60-66dd769a3dfa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "APIURL",
+                "type": "string",
+                "value": "https://esgdocanalysis-946.canadacentral.cloudapp.azure.com"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

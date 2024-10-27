@@ -1,0 +1,10 @@
+{
+  "$kind": "BotConfiguration",
+  "settings": {
+    "GenerativeActionsEnabled": true
+  },
+  "aISettings": {
+    "$kind": "AISettings",
+    "useModelKnowledge": false
+  }
+}

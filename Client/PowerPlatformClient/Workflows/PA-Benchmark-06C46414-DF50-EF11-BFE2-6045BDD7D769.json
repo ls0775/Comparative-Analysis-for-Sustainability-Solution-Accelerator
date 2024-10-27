@@ -1,0 +1,321 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "cr26f_sharedsharepointonline_26a56"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "e40f9cbb-2478-46b1-a7d2-6f409bc5546b"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "description": "",
+                  "title": "json_converted_value",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "HTTP-InvokeJob": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "893586da-6479-43a4-b571-752f7e0cb08c"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "POST",
+            "uri": "@{variables('APIURL')}/ESRS/ESRSDisclosureBenchmarkOnQueue",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "@variables('varcollection')"
+          },
+          "operationOptions": "DisableAsyncPattern"
+        },
+        "Do_until": {
+          "actions": {
+            "HTTP-StatusCheck": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a6796dc5-e156-459c-b313-c8c207874fd1"
+              },
+              "type": "Http",
+              "inputs": {
+                "method": "GET",
+                "uri": "@outputs('HTTP-InvokeJob')?['headers']['Location']"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Set-varStatus": {
+              "runAfter": {
+                "HTTP-StatusCheck": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a2e9e519-94b5-4987-a0a3-b82fb4c8b681"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "varStatus",
+                "value": "@body('HTTP-StatusCheck')['processStatus']"
+              }
+            },
+            "Delay": {
+              "runAfter": {
+                "Set-varStatus": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3143e080-eb14-46d6-a0b3-da5f9f3da9ee"
+              },
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 20,
+                  "unit": "Second"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Set_variable": [
+              "Succeeded"
+            ]
+          },
+          "expression": "@equals(variables('varStatus'),'Completed')",
+          "limit": {
+            "count": 5000,
+            "timeout": "PT1H"
+          },
+          "metadata": {
+            "operationMetadataId": "bb4e4a85-a70b-4f49-a8a1-5aee2f85e48e"
+          },
+          "type": "Until"
+        },
+        "Initialize-varStatus": {
+          "runAfter": {
+            "backend_API_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a596fd5d-11a1-45d3-8987-dee3dad0e996"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varStatus",
+                "type": "string",
+                "value": "InProgress"
+              }
+            ]
+          }
+        },
+        "Condition": {
+          "actions": {
+            "HTTP-GetSuccessStatus": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "477584bc-a9ee-4e42-a971-87c43e9027c7"
+              },
+              "type": "Http",
+              "inputs": {
+                "method": "GET",
+                "uri": "@outputs('HTTP-InvokeJob')?['headers']['Location']"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Create_file": {
+              "runAfter": {
+                "HTTP-DownloadContent": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "7c8290b2-6a06-4aea-930f-06d77dc62342"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://mngenvmcap993385.sharepoint.com/sites/SustainabilityGenAISA",
+                  "folderPath": "/BenchmarkGapAnalysisOutputdocs",
+                  "name": "@split(last(split(body('HTTP-GetSuccessStatus')['BenchmarkResultPdfFileUrl'], '/')), '?')[0]",
+                  "body": "@base64ToBinary(body('HTTP-DownloadContent')['$content'])"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "HTTP-DownloadContent": {
+              "runAfter": {
+                "HTTP-GetSuccessStatus": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d71c4579-498d-49c6-a341-7e4a89805d0e"
+              },
+              "type": "Http",
+              "inputs": {
+                "method": "GET",
+                "uri": "@body('HTTP-GetSuccessStatus')['BenchmarkResultPdfFileUrl']"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Do_until": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "33f4f4c0-9451-4dfb-b483-6fc1857f6394"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "500",
+                    "message": "Some file moving process has been failed"
+                  }
+                }
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@variables('varStatus')",
+                  "Completed"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e75b8421-bfe5-4e1f-9006-a905895dbfbd"
+          },
+          "type": "If"
+        },
+        "Set_variable": {
+          "runAfter": {
+            "HTTP-InvokeJob": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "567295d3-9416-4984-ab00-8a08b0063338"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "varStatus",
+            "value": "@outputs('HTTP-InvokeJob')?['headers']?['Location']"
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Initialize-varStatus": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "843dd58a-eab6-453c-82be-e5f8bf0fadba"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "varcollection",
+                "type": "string",
+                "value": "@triggerBody()?['text']"
+              }
+            ]
+          }
+        },
+        "backend_API_URL": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d99fb722-ad84-46fa-9b60-66dd769a3dfa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "APIURL",
+                "type": "string",
+                "value": "https://esgdocanalysis-946.canadacentral.cloudapp.azure.com"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

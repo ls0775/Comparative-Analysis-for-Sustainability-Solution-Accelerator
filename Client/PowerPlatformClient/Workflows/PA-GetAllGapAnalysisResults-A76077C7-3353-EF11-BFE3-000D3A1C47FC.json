@@ -1,0 +1,98 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "undefined",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "c260d74d-a0c1-49ba-a799-e636138cfd81"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "HTTP": {
+          "runAfter": {
+            "backend_API_URL": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "47a98192-ad30-4eb3-8d0b-84175fb854f8"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "GET",
+            "uri": "@{variables('APIURL')}/ESRS/GetAllESRSGapAnalysisResults",
+            "headers": {
+              "Content-Type": "application/json"
+            }
+          },
+          "operationOptions": "DisableAsyncPattern"
+        },
+        "Return": {
+          "runAfter": {
+            "HTTP": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5c8a151b-7649-4a9c-83e4-6b16172ac5e2"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "result": "@string(body('HTTP'))"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "title": "result",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "backend_API_URL": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d99fb722-ad84-46fa-9b60-66dd769a3dfa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "APIURL",
+                "type": "string",
+                "value": "https://esgdocanalysis-946.canadacentral.cloudapp.azure.com"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

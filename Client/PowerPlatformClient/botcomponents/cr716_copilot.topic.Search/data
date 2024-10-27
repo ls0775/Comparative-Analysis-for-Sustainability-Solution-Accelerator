@@ -1,0 +1,91 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnUnknownIntent
+  id: main
+  priority: -1
+  actions:
+    - kind: SearchAndSummarizeContent
+      id: search-content
+      userInput: =System.Activity.Text
+      variable: Topic.Answer
+      moderationLevel: Medium
+      applyModelKnowledgeSetting: false
+      fileSearchDataSource:
+        searchFilesMode:
+          kind: DoNotSearchFiles
+
+      knowledgeSources:
+        kind: SearchSpecificKnowledgeSources
+        knowledgeSources:
+          - cr716_copilot.knowledge.BenchmarkGapAnalysisOutputdocs_7pQAw3pMoXgpv_oRUuUIs
+
+      responseCaptureType: FullResponse
+
+    - kind: SendActivity
+      id: sendActivity_ELMdUC
+      activity:
+        attachments:
+          - kind: AdaptiveCardTemplate
+            cardContent: |-
+              ={
+                type: "AdaptiveCard",
+                '$schema': "http://adaptivecards.io/schemas/adaptive-card.json",
+                version: "1.5",
+                body: [
+                  {
+                    type: "Container",
+                    items: [
+                      {
+                        type: "TextBlock",
+                        text: Topic.Answer.Text.Content,
+                        wrap: true
+                      }
+                    ]
+                  },
+                  {
+                    type: "Container",
+                    items: ForAll(Topic.Answer.Text.CitationSources,
+                      {
+                        type: "TextBlock",
+                        text: "[" & Id &"]: [" & Name & "](" & Url & ")",
+                        wrap: true,
+                        size: "Small",
+                        weight: "Lighter"
+                      }
+                    )
+                  },
+                  {
+                    type: "Container",
+                    items: [
+                      {
+                        type: "ColumnSet",
+                        columns: [
+                          {
+                            type: "Column",
+                            width: "90",
+                            items: [
+                              {
+                                type: "TextBlock",
+                                text: "AI-generated answer.",
+                                wrap: true,
+                                size: "Small",
+                                color: "Accent"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+
+    - kind: ConditionGroup
+      id: has-answer-conditions
+      conditions:
+        - id: has-answer
+          condition: =!IsBlank(Topic.Answer)
+          actions:
+            - kind: EndDialog
+              id: end-topic
+              clearTopicQueue: true
